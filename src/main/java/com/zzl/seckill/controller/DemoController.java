@@ -3,6 +3,8 @@ package com.zzl.seckill.controller;
 import com.sun.org.apache.bcel.internal.classfile.Code;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.zzl.seckill.domain.User;
+import com.zzl.seckill.redis.RedisService;
+import com.zzl.seckill.redis.UserKey;
 import com.zzl.seckill.result.CodeMsg;
 import com.zzl.seckill.result.Result;
 import com.zzl.seckill.service.UserService;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Key;
 import java.sql.ResultSet;
 
 /**
@@ -25,6 +28,9 @@ public class DemoController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    RedisService redisService;
 
     @RequestMapping("/")
     @ResponseBody
@@ -73,6 +79,23 @@ public class DemoController {
     @ResponseBody
     public Result<Boolean> dbTx(){
         userService.tx();
+        return Result.success(true);
+    }
+
+    @RequestMapping("redis/get")
+    @ResponseBody
+    public Result<User> redisGet(){
+        User user = redisService.get(UserKey.getById, "" + 1, User.class);
+        return Result.success(user);
+    }
+
+    @RequestMapping("redis/set")
+    @ResponseBody
+    public Result<Boolean> redisSet(){
+        User user = new User();
+        user.setName("hello redis.set");
+        user.setId(100);
+        redisService.set(UserKey.getById, "" + 1, user);
         return Result.success(true);
     }
 }

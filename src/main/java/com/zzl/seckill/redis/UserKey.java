@@ -1,5 +1,7 @@
 package com.zzl.seckill.redis;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @Author: Zzl
  * @Date: 11:56 2020/3/28

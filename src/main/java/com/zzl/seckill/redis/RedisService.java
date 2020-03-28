@@ -2,6 +2,7 @@ package com.zzl.seckill.redis;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -10,6 +11,7 @@ import redis.clients.jedis.JedisPool;
  * @Date: 11:32 2020/3/28
  * @Version 1.0
  **/
+@Service
 public class RedisService {
 
     @Autowired
@@ -28,7 +30,8 @@ public class RedisService {
             String realKey = prefix.getPrefix() + key;
             //从redis中查到readKey的值
             String str = jedis.get(realKey);
-            return stringToBean(str, clazz);
+            T t =  stringToBean(str, clazz);
+            return t;
         }finally {
             returnToPool(jedis);
         }
@@ -53,7 +56,7 @@ public class RedisService {
         }else if(clazz == String.class){
             return (T) str;
         }else{
-            return JSON.toJavaObject(JSON.parseArray(str), clazz);
+            return JSON.toJavaObject(JSON.parseObject(str), clazz);
         }
     }
 
