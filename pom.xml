@@ -54,6 +54,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!--MySQL连接池-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
@@ -65,16 +66,29 @@
             <artifactId>jedis</artifactId>
         </dependency>
 
+        <!--将对象转化成JSON，转化后的JSON可以用作Redis的value-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.38</version>
         </dependency>
 
+        <!--注解@ConfigurationProperties需要引用的包-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <!--MD5加密需要依赖的包-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.6</version>
         </dependency>
     </dependencies>
 
