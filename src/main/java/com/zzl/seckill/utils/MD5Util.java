@@ -26,13 +26,14 @@ public class MD5Util {
      */
     public static String inputPasswdToFormPasswd(String inputPasswd){
         //浏览器端第一次加密
-        String str = SALT.charAt(0) + SALT.charAt(2) + inputPasswd + SALT.charAt(5) + SALT.charAt(4);
+        //有加""和没有加""的结果是不一样的
+        String str = "" + SALT.charAt(0) + SALT.charAt(2) + inputPasswd + SALT.charAt(5) + SALT.charAt(4);
         //浏览器端第一次MD5
         return md5(str);
     }
 
     public static String formPasswdToDbPasswd(String formPasswd, String salt){
-        String str = salt.charAt(0) + salt.charAt(2) + formPasswd + salt.charAt(5) + salt.charAt(4);
+        String str = "" + salt.charAt(0) + salt.charAt(2) + formPasswd + salt.charAt(5) + salt.charAt(4);
         return md5(str);
     }
 
@@ -45,10 +46,13 @@ public class MD5Util {
     public static String inputPasswdToDbPasswd(String inputPasswd, String saltDb){
         String formPass = inputPasswdToFormPasswd(inputPasswd);
         String dbPass = formPasswdToDbPasswd(formPass, saltDb);
-        return md5(dbPass);
+        return dbPass;
     }
 
     public static void main(String[] args) {
+        System.out.println(inputPasswdToFormPasswd("123456"));
+        System.out.println(formPasswdToDbPasswd("d3b1294a61a07da9b49b6e22b2cbd7f9","1a2b3c4d\n"));
+
         System.out.println(inputPasswdToDbPasswd("123456", "1a2b3c4d"));
     }
 
