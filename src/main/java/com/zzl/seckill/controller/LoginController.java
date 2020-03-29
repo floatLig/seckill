@@ -28,6 +28,10 @@ public class LoginController {
     @Autowired
     private MiaoshaUserService userService;
 
+    /**
+     * 返回登录页面
+     * @return 登录页面
+     */
     @RequestMapping("to_login")
     public String toLogin() {
         return "login";

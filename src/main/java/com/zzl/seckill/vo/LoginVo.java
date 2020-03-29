@@ -1,5 +1,7 @@
 package com.zzl.seckill.vo;
 
+import com.zzl.seckill.validator.IsMobile;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -9,8 +11,11 @@ import javax.validation.constraints.NotNull;
  **/
 public class LoginVo {
 
+    @NotNull
+    @IsMobile
     private String mobile;
 
+    @NotNull
     private String password;
 
     public String getMobile() {
