@@ -21,4 +21,8 @@ public class GoodsService {
     public List<GoodsVo> listGoodsDao(){
         return goodsDao.listGoodsVo();
     }
+
+    public GoodsVo getGoodsVoByGoodsId(long goodsId) {
+        return goodsDao.getGoodsVoByGoodsId(goodsId);
+    }
 }

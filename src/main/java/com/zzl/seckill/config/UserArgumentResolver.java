@@ -32,7 +32,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         System.out.println("supportsParameter--MethodParameter: " + parameter);
-        Class<?> clazz = parameter.getParameterType();
+        Class<?> clazz = parameter.getParameterType(); //TODO：首先执行？
         return clazz == MiaoshaUser.class;
     }
 
