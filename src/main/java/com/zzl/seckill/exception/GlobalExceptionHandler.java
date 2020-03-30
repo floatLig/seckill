@@ -23,7 +23,7 @@ import java.util.List;
 public class GlobalExceptionHandler {
     @ExceptionHandler(value=Exception.class)
     public Result<String> exceptionHandler(HttpServletRequest request, Exception e){
-        e.printStackTrace();
+        // e.printStackTrace();
         if(e instanceof GlobalException) {
             GlobalException ex = (GlobalException)e;
             return Result.error(ex.getCm());
@@ -31,6 +31,7 @@ public class GlobalExceptionHandler {
             BindException ex = (BindException)e;
             List<ObjectError> errors = ex.getAllErrors();
             ObjectError error = errors.get(0);
+            System.out.println(error);
             String msg = error.getDefaultMessage();
             return Result.error(CodeMsg.BIND_ERROR.fillArgs(msg));
         }else {

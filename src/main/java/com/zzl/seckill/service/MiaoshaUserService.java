@@ -3,12 +3,16 @@ package com.zzl.seckill.service;
 import com.zzl.seckill.dao.MiaoshaUserDao;
 import com.zzl.seckill.domain.MiaoshaUser;
 import com.zzl.seckill.exception.GlobalException;
+import com.zzl.seckill.redis.MiaoshaUserKey;
+import com.zzl.seckill.redis.RedisService;
 import com.zzl.seckill.result.CodeMsg;
 import com.zzl.seckill.utils.MD5Util;
+import com.zzl.seckill.utils.UUIDUtil;
 import com.zzl.seckill.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -21,6 +25,11 @@ public class MiaoshaUserService {
 
     @Autowired
     MiaoshaUserDao miaoshaUserDao;
+
+    @Autowired
+    RedisService redisService;
+
+    public static final String COOKIE_NAME_TOKEN = "token";
 
     public boolean login(HttpServletResponse response, LoginVo loginVo){
         if(loginVo == null){
@@ -40,13 +49,25 @@ public class MiaoshaUserService {
         String saltDb = user.getSalt();
         String calcPass = MD5Util.formPasswdToDbPasswd(formPasswd, saltDb);
         if(!calcPass.equals(dbPasswd)){
-            throw new GlobalException(CodeMsg.PASSWORD_EMPTY);
+            throw new GlobalException(CodeMsg.PASSWORD_ERROR);
         }
-
+        System.out.println("登录成功, 账号为：" + mobile);
+        //生成cookie
+        String token = UUIDUtil.uuid();
+        System.out.println("token为：" + token);
+        addCookie(response, token, user);
         return true;
     }
 
     private MiaoshaUser getById(Long id){
         return miaoshaUserDao.getById(id);
+    }
+
+    private void addCookie(HttpServletResponse response, String token, MiaoshaUser user){
+        redisService.set(MiaoshaUserKey.token, token, user);
+        Cookie cookie = new Cookie(COOKIE_NAME_TOKEN, token);
+        cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 }

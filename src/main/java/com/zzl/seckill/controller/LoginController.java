@@ -37,6 +37,12 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * 登录判断
+     * @param response
+     * @param loginVo 登录类，包括用户名、密码
+     * @return 如果用户名、密码正确，返回“成功码”
+     */
     @RequestMapping("do_login")
     @ResponseBody
     public Result<Boolean> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {
