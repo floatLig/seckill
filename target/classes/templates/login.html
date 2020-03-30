@@ -82,14 +82,14 @@ function doLogin(){
 	    	password: password
 	    },
 	    success:function(data){
-			alert("success");
+			// alert("success");
 	    	layer.closeAll();
 	    	if(data.code == 0){
-	    		alert("成功");
+	    		// alert("成功");
 	    		layer.msg("成功");
 	    		window.location.href="/goods/to_list";
 	    	}else{
-	    		alert("失败");
+	    		// alert("失败");
 	    		layer.msg(data.msg);
 	    	}
 	    },
