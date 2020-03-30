@@ -9,6 +9,7 @@ import com.zzl.seckill.result.CodeMsg;
 import com.zzl.seckill.utils.MD5Util;
 import com.zzl.seckill.utils.UUIDUtil;
 import com.zzl.seckill.vo.LoginVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,10 +65,25 @@ public class MiaoshaUserService {
     }
 
     private void addCookie(HttpServletResponse response, String token, MiaoshaUser user){
+        //存放到redis
         redisService.set(MiaoshaUserKey.token, token, user);
+        //cookie
         Cookie cookie = new Cookie(COOKIE_NAME_TOKEN, token);
         cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());
         cookie.setPath("/");
         response.addCookie(cookie);
+    }
+
+    public MiaoshaUser getByToken(HttpServletResponse response, String token) {
+        if(StringUtils.isEmpty(token)){
+            return null;
+        }
+        MiaoshaUser user = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
+        //延长有效期
+        if(user != null){
+            //重新设置新的cookie，更新时间
+            addCookie(response, token, user);
+        }
+        return user;
     }
 }

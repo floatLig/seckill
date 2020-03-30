@@ -50,8 +50,7 @@ public class MD5Util {
     }
 
     public static void main(String[] args) {
-        String str = String.format("str", "z zl");
-        System.out.println(str);
+        System.out.println(inputPasswdToDbPasswd("111111", "1afa2b3c4d"));
     }
 
 }
