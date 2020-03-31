@@ -13,11 +13,11 @@ import com.sun.org.apache.bcel.internal.classfile.Code;
 public class CodeMsg {
     private int code;
     private String msg;
-
     private CodeMsg(int code, String msg){
         this.code = code;
         this.msg = msg;
     }
+
 
     /**
      * 通用的成功状态信息，code 为 0， msg 为 "success"
@@ -45,6 +45,9 @@ public class CodeMsg {
     // 订单模块 5004XX
 
     // 秒杀模块 5005XX
+
+    public static CodeMsg MIAO_SHA_OVER = new CodeMsg(500500, "商品已经秒杀完毕");
+    public static CodeMsg REPEAT_MIAOSHA = new CodeMsg(500501, "不能重复秒杀");
 
     public CodeMsg fillArgs(Object...args){
         int code = this.code;

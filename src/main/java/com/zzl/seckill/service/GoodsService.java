@@ -1,6 +1,7 @@
 package com.zzl.seckill.service;
 
 import com.zzl.seckill.dao.GoodsDao;
+import com.zzl.seckill.domain.MiaoshaGoods;
 import com.zzl.seckill.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,13 @@ public class GoodsService {
 
     public GoodsVo getGoodsVoByGoodsId(long goodsId) {
         return goodsDao.getGoodsVoByGoodsId(goodsId);
+    }
+
+    public void reduceStock(GoodsVo goods){
+        MiaoshaGoods g = new MiaoshaGoods();
+        //获取秒杀对象
+        g.setGoodsId(goods.getId());
+        //减库存
+        goodsDao.reduceStock(g);
     }
 }
