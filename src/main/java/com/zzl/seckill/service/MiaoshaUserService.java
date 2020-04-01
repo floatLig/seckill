@@ -32,7 +32,7 @@ public class MiaoshaUserService {
 
     public static final String COOKIE_NAME_TOKEN = "token";
 
-    public boolean login(HttpServletResponse response, LoginVo loginVo){
+    public String login(HttpServletResponse response, LoginVo loginVo){
         if(loginVo == null){
             throw new GlobalException(CodeMsg.LOGIN_USER_ERROR);
         }
@@ -57,7 +57,7 @@ public class MiaoshaUserService {
         String token = UUIDUtil.uuid();
         System.out.println("token为：" + token);
         addCookie(response, token, user);
-        return true;
+        return token;
     }
 
     private MiaoshaUser getById(Long id){

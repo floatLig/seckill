@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @Version 1.0
  **/
 @SpringBootApplication
+// public class MainApplication extends SpringBootServletInitializer {
 public class MainApplication  {
     public static void main(String[] args) throws Exception{
         SpringApplication.run(MainApplication.class, args);

@@ -8,7 +8,7 @@
     <artifactId>seckill</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!--在tomcat下运行-->
-    <!--<packaging>war</packaging>-->
+    <packaging>jar</packaging>
 
     <name>seckill</name>
     <!-- FIXME change it to the project's website -->
@@ -106,6 +106,7 @@
 
     </dependencies>
 
+    <!--打war包-->
     <!--<build>-->
     <!--    <finalName>${project.artifactId}</finalName>-->
     <!--    <plugins>-->
@@ -115,5 +116,16 @@
     <!--        </plugin>-->
     <!--    </plugins>-->
     <!--</build>-->
+
+    <!--打jar包插件-->
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
