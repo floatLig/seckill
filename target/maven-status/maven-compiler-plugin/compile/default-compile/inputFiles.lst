@@ -1,7 +1,10 @@
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\config\WebConfig.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\dao\UserDao.java
+D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\utils\DBUtil.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\redis\RedisConfig.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\validator\IsMobile.java
+D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\utils\UserUtil.java
+D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\vo\GoodsDetailVo.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\redis\UserKey.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\validator\IsMobileValidator.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\utils\MD5Util.java
@@ -15,6 +18,7 @@ D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\dao\GoodsDao.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\service\MiaoshaUserService.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\controller\UserController.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\domain\MiaoshaOrder.java
+D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\redis\OrderKey.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\service\OrderService.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\controller\LoginController.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\exception\GlobalExceptionHandler.java
@@ -35,7 +39,10 @@ D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\result\Result.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\vo\GoodsVo.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\domain\User.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\utils\ValidatorUtil.java
+D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\redis\GoodsKey.java
+D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\vo\OrderDetailVo.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\result\CodeMsg.java
+D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\controller\OrderController.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\dao\MiaoshaUserDao.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\domain\OrderInfo.java
 D:\Workspace\GitHub\seckill\src\main\java\com\zzl\seckill\redis\MiaoshaUserKey.java

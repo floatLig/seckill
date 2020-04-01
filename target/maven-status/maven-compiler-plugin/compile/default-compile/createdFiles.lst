@@ -1,4 +1,5 @@
 com\zzl\seckill\redis\KeyPrefix.class
+com\zzl\seckill\redis\OrderKey.class
 com\zzl\seckill\service\GoodsService.class
 com\zzl\seckill\domain\OrderInfo.class
 com\zzl\seckill\config\UserArgumentResolver.class
@@ -10,13 +11,18 @@ com\zzl\seckill\controller\UserController.class
 com\zzl\seckill\domain\MiaoshaGoods.class
 com\zzl\seckill\exception\GlobalExceptionHandler.class
 com\zzl\seckill\redis\UserKey.class
+com\zzl\seckill\utils\UserUtil.class
 com\zzl\seckill\result\Result.class
+com\zzl\seckill\vo\GoodsDetailVo.class
+com\zzl\seckill\utils\DBUtil.class
 com\zzl\seckill\exception\GlobalException.class
 com\zzl\seckill\vo\GoodsVo.class
 com\zzl\seckill\redis\RedisPollFactory.class
+com\zzl\seckill\redis\GoodsKey.class
 com\zzl\seckill\controller\GoodsController.class
 com\zzl\seckill\utils\MD5Util.class
 com\zzl\seckill\utils\ValidatorUtil.class
+com\zzl\seckill\vo\OrderDetailVo.class
 com\zzl\seckill\result\CodeMsg.class
 com\zzl\seckill\service\UserService.class
 com\zzl\seckill\domain\User.class
@@ -34,6 +40,7 @@ com\zzl\seckill\controller\MiaoshaController.class
 com\zzl\seckill\validator\IsMobileValidator.class
 com\zzl\seckill\controller\DemoController.class
 com\zzl\seckill\redis\RedisConfig.class
+com\zzl\seckill\controller\OrderController.class
 com\zzl\seckill\domain\Goods.class
 com\zzl\seckill\dao\OrderDao.class
 com\zzl\seckill\controller\LoginController.class

@@ -5,6 +5,7 @@ import com.zzl.seckill.domain.MiaoshaUser;
 import com.zzl.seckill.domain.OrderInfo;
 import com.zzl.seckill.redis.RedisService;
 import com.zzl.seckill.result.CodeMsg;
+import com.zzl.seckill.result.Result;
 import com.zzl.seckill.service.GoodsService;
 import com.zzl.seckill.service.MiaoshaService;
 import com.zzl.seckill.service.MiaoshaUserService;
@@ -14,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Author: Zzl
@@ -40,30 +43,37 @@ public class MiaoshaController {
     @Autowired
     MiaoshaService miaoshaService;
 
-    @RequestMapping("do_miaosha")
-    public String list(Model model, MiaoshaUser user,
-                       @RequestParam("goodsId") long goodsId){
+    @RequestMapping(value = "do_miaosha", method = RequestMethod.POST)
+    @ResponseBody
+    public Result<OrderInfo> list(Model model, MiaoshaUser user,
+                                  @RequestParam("goodsId") long goodsId){
         if(user == null){
-            return "login";
+            // return "login";
+            //不再是返回整个页面，而是返回数据对象
+            return Result.error(CodeMsg.SESSION_ERROR);
         }
         //判断库存
         GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
         int stock = goods.getStockCount();
         if(stock <= 0){
-            model.addAttribute("errmsg", CodeMsg.MIAO_SHA_OVER.getMsg());
-            return "miaosha_fail";
+            // model.addAttribute("errmsg", CodeMsg.MIAO_SHA_OVER.getMsg());
+            // return "miaosha_fail";
+
+            return Result.error(CodeMsg.MIAO_SHA_OVER);
         }
         //防止重复秒杀
         MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdAndGoodsId(user.getId(), goodsId);
         if(order != null){
-            model.addAttribute("errmsg", CodeMsg.REPEAT_MIAOSHA.getMsg());
-            return "miaosha_fail";
+            // model.addAttribute("errmsg", CodeMsg.REPEAT_MIAOSHA.getMsg());
+            // return "miaosha_fail";
+            return Result.error(CodeMsg.REPEAT_MIAOSHA);
         }
         //减库存 下订单 写入秒杀订单
         //根据用户，商品创建秒杀订单
         OrderInfo orderInfo = miaoshaService.miaosha(user, goods);
-        model.addAttribute("orderInfo", orderInfo);
-        model.addAttribute("goods", goods);
-        return "order_detail";
+        // model.addAttribute("orderInfo", orderInfo);
+        // model.addAttribute("goods", goods);
+        // return "order_detail";
+        return Result.success(orderInfo);
     }
 }
