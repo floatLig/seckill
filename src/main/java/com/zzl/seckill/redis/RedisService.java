@@ -45,7 +45,7 @@ public class RedisService {
      * @return Java对象
      */
     @SuppressWarnings("unchecked")
-    private <T> T stringToBean(String str, Class<T> clazz) {
+    public  <T> T stringToBean(String str, Class<T> clazz) {
         if(str == null || str.length() <= 0 || clazz == null){
             return null;
         }
@@ -70,6 +70,14 @@ public class RedisService {
         }
     }
 
+    /**
+     * 将键值对存入Redis
+     *
+     * @param prefix 前缀，为了提高可读性和防止重复，在每个key前面加上标识符
+     * @param key key
+     * @param value key对应的value
+     * @return
+     */
     public <T> boolean set(KeyPrefix prefix, String key, T value){
         //需要连接redis
         Jedis jedis = null;
@@ -81,6 +89,7 @@ public class RedisService {
             }
             //生成真正的key
             String realKey = prefix.getPrefix() + key;
+
             int secondes = prefix.expireSeconds();
             if(secondes <= 0){
                 jedis.set(realKey, str);
@@ -93,7 +102,10 @@ public class RedisService {
         }
     }
 
-    private <T> String beanToString(T value) {
+    /**
+     * 任意类型T 转成 字符串
+     */
+    public  <T> String beanToString(T value) {
         if(value == null){
             return null;
         }
@@ -152,7 +164,7 @@ public class RedisService {
             jedis = jedisPool.getResource();
             //生成真正的key
             String realKey = prefix.getPrefix() + key;
-            long ret = jedis.del(key);
+            long ret = jedis.del(realKey);
             return ret > 0;
         }finally {
             returnToPool(jedis);

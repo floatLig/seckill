@@ -3,6 +3,7 @@ package com.zzl.seckill.controller;
 import com.sun.org.apache.bcel.internal.classfile.Code;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.zzl.seckill.domain.User;
+import com.zzl.seckill.rabbitMQ.MQSender;
 import com.zzl.seckill.redis.RedisService;
 import com.zzl.seckill.redis.UserKey;
 import com.zzl.seckill.result.CodeMsg;
@@ -31,6 +32,9 @@ public class DemoController {
 
     @Autowired
     RedisService redisService;
+
+    @Autowired
+    MQSender mqSender;
 
     @RequestMapping("/")
     @ResponseBody
@@ -64,6 +68,7 @@ public class DemoController {
     @RequestMapping("/thymeleaf")
     public String thymeleaf(Model model){
         System.out.println("hello world");
+        //前端通过${name}获取name的值
         model.addAttribute("name", "Zzl");
         return "hello";
     }
@@ -97,5 +102,33 @@ public class DemoController {
         user.setId(100);
         redisService.set(UserKey.getById, "" + 1, user);
         return Result.success(true);
+    }
+
+    @RequestMapping("mq")
+    @ResponseBody
+    public Result<String> mq(){
+        mqSender.send("hello RabbitMQ");
+        return Result.success("Hello RabbitMQ");
+    }
+
+    @RequestMapping("mq/header")
+    @ResponseBody
+    public Result<String> header(){
+        mqSender.sendHeader("hello HeaderExchange");
+        return Result.success("Hello HeaderExchange");
+    }
+
+    @RequestMapping("mq/fanout")
+    @ResponseBody
+    public Result<String> fanout(){
+        mqSender.sendFanout("hello FanoutExchange");
+        return Result.success("Hello FanoutExchange");
+    }
+
+    @RequestMapping("mq/topic")
+    @ResponseBody
+    public Result<String> topic(){
+        mqSender.sendTopic("hello TopicExchange");
+        return Result.success("Hello TopicExchange");
     }
 }

@@ -1,11 +1,18 @@
 package com.zzl.seckill.result;
 
 /**
+ *  code ： 0 / 500100 / 500101 / 等<br>
+ *  msg  ： success /  服务端异常 / 参数检验错误<br>
+ *  T data  ： 成功返回到前端的对象   /  null<br>  <br>
+ *
+ *  主要调用方法是 ：<br>
+ *  --  success(T data) -> code = 0, msg = success<br>
+ *  --  error(Code Msg) -> data = null<br>
+ *
  * @Author: Zzl
  * @Date: 13:01 2020/3/26
  * @Version 1.0
  *
- * <T>是泛型
  **/
 public class Result<T> {
     private int code;

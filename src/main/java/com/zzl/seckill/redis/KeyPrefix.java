@@ -1,7 +1,13 @@
 package com.zzl.seckill.redis;
 
 /**
- * 采用模板模式:
+ * KeyPrefix应该包含两个属性：<br>
+ *     1. prefix 前缀 <br>
+ *     2. expireSeconds 过期时间
+ *
+ * <br><br>
+ *
+ * 采用模板模式:<br>
  * 接口KeyPrefix  -->  抽象类BasePrefix --> 具体的实现类
  *
  * @Author: Zzl

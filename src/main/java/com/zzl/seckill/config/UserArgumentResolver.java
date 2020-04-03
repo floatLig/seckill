@@ -32,7 +32,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         System.out.println("supportsParameter--MethodParameter: " + parameter);
-        Class<?> clazz = parameter.getParameterType(); //TODO：首先执行？
+        Class<?> clazz = parameter.getParameterType();
         return clazz == MiaoshaUser.class;
     }
 
@@ -50,6 +50,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         }
         //拿到token
         String token = StringUtils.isEmpty(paramToken) ? cookieToken : paramToken;
+        //将cookie通过response返回回去
         return userService.getByToken(response, token);
     }
 
@@ -62,6 +63,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         if(cookies == null || cookies.length == 0){
             return null;
         }
+        //电脑端可能有多个cookie
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals(cookieNameToken)) {
                 return cookie.getValue();
