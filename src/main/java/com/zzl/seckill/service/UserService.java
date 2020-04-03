@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 public class UserService {
 
     @Autowired
-    private UserDao userDao;
+    UserDao userDao;
 
     public User getById(int id){
         return userDao.getById(id);

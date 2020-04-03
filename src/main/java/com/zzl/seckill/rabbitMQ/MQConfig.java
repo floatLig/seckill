@@ -30,6 +30,15 @@ public class MQConfig {
      * Direct模式  交换机Exchange
      */
     @Bean
+    public Queue queueMiaosha(){
+        //队列需要名字
+        return new Queue(MIAOSHA_QUEUE, true);
+    }
+
+    /**
+     * Direct模式  交换机Exchange
+     */
+    @Bean
     public Queue queue(){
         //队列需要名字
         return new Queue(QUEUE, true);

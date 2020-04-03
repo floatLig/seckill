@@ -103,32 +103,32 @@ public class DemoController {
         redisService.set(UserKey.getById, "" + 1, user);
         return Result.success(true);
     }
-
-    @RequestMapping("mq")
-    @ResponseBody
-    public Result<String> mq(){
-        mqSender.send("hello RabbitMQ");
-        return Result.success("Hello RabbitMQ");
-    }
-
-    @RequestMapping("mq/header")
-    @ResponseBody
-    public Result<String> header(){
-        mqSender.sendHeader("hello HeaderExchange");
-        return Result.success("Hello HeaderExchange");
-    }
-
-    @RequestMapping("mq/fanout")
-    @ResponseBody
-    public Result<String> fanout(){
-        mqSender.sendFanout("hello FanoutExchange");
-        return Result.success("Hello FanoutExchange");
-    }
-
-    @RequestMapping("mq/topic")
-    @ResponseBody
-    public Result<String> topic(){
-        mqSender.sendTopic("hello TopicExchange");
-        return Result.success("Hello TopicExchange");
-    }
+    //
+    // @RequestMapping("mq")
+    // @ResponseBody
+    // public Result<String> mq(){
+    //     mqSender.send("hello RabbitMQ");
+    //     return Result.success("Hello RabbitMQ");
+    // }
+    //
+    // @RequestMapping("mq/header")
+    // @ResponseBody
+    // public Result<String> header(){
+    //     mqSender.sendHeader("hello HeaderExchange");
+    //     return Result.success("Hello HeaderExchange");
+    // }
+    //
+    // @RequestMapping("mq/fanout")
+    // @ResponseBody
+    // public Result<String> fanout(){
+    //     mqSender.sendFanout("hello FanoutExchange");
+    //     return Result.success("Hello FanoutExchange");
+    // }
+    //
+    // @RequestMapping("mq/topic")
+    // @ResponseBody
+    // public Result<String> topic(){
+    //     mqSender.sendTopic("hello TopicExchange");
+    //     return Result.success("Hello TopicExchange");
+    // }
 }

@@ -19,7 +19,7 @@ public class GoodsService {
     @Autowired
     GoodsDao goodsDao;
 
-    public List<GoodsVo> listGoodsDao(){
+    public List<GoodsVo> listGoodsVo(){
         return goodsDao.listGoodsVo();
     }
 
@@ -27,11 +27,21 @@ public class GoodsService {
         return goodsDao.getGoodsVoByGoodsId(goodsId);
     }
 
-    public void reduceStock(GoodsVo goods){
+    public boolean reduceStock(GoodsVo goods){
         MiaoshaGoods g = new MiaoshaGoods();
         //获取秒杀对象
         g.setGoodsId(goods.getId());
         //减库存
-        goodsDao.reduceStock(g);
+        int ret = goodsDao.reduceStock(g);
+        return ret > 0;
+    }
+
+    public void resetStock(List<GoodsVo> goodsList) {
+        for(GoodsVo goods : goodsList ) {
+            MiaoshaGoods g = new MiaoshaGoods();
+            g.setGoodsId(goods.getId());
+            g.setStockCount(goods.getStockCount());
+            goodsDao.resetStock(g);
+        }
     }
 }

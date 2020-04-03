@@ -8,7 +8,6 @@ import com.zzl.seckill.service.GoodsService;
 import com.zzl.seckill.service.MiaoshaUserService;
 import com.zzl.seckill.vo.GoodsDetailVo;
 import com.zzl.seckill.vo.GoodsVo;
-import javafx.application.Application;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -66,7 +65,7 @@ public class GoodsController {
         }
 
         //如果缓存没有，则从数据库里查询商品列表
-        List<GoodsVo> goodsVoList = goodsService.listGoodsDao();
+        List<GoodsVo> goodsVoList = goodsService.listGoodsVo();
         model.addAttribute("goodsList", goodsVoList);
         // return "goods_list";
 
